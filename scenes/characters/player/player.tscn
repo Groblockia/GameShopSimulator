@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://b6ap3p4ekbxu3"]
+
+[ext_resource type="Script" uid="uid://c2i8uxcind4u0" path="res://scenes/characters/player/player_script.gd" id="1_e6l77"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_rhvw2"]
+[ext_resource type="Script" uid="uid://c4u3e06lb62ox" path="res://scenes/characters/player/head_script.gd" id="2_xuses"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_hss88"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="4_mk55u"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_qd3e3"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_qd3e3"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="6_6avc5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lpkh3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_e6l77"]
+
+[node name="Player" type="CharacterBody3D" unique_id=323220209]
+script = ExtResource("1_e6l77")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1269925753]
+shape = SubResource("CapsuleShape3D_lpkh3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1888364714]
+mesh = SubResource("CapsuleMesh_e6l77")
+
+[node name="Head" type="Node3D" parent="." unique_id=1722484052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("2_xuses")
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=11410691]
+
+[node name="StateChartDebugger" parent="." unique_id=809139354 instance=ExtResource("6_6avc5")]
+offset_right = -826.0
+offset_bottom = -282.0
+initial_node_to_watch = NodePath("../StateChart")
+
+[node name="StateChart" type="Node" parent="." unique_id=336755062]
+script = ExtResource("2_rhvw2")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="Root" type="Node" parent="StateChart" unique_id=310321186]
+script = ExtResource("4_mk55u")
+
+[node name="Movement" type="Node" parent="StateChart/Root" unique_id=1138693237]
+script = ExtResource("3_hss88")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root/Movement" unique_id=446526039]
+script = ExtResource("4_qd3e3")
+
+[node name="start_walking" type="Node" parent="StateChart/Root/Movement/Idle" unique_id=344733278]
+script = ExtResource("5_qd3e3")
+to = NodePath("../../Walking")
+event = &"start_walking"
+delay_in_seconds = "0.0"
+
+[node name="jump" type="Node" parent="StateChart/Root/Movement/Idle" unique_id=2143067098]
+script = ExtResource("5_qd3e3")
+to = NodePath("../../Jump")
+event = &"jump"
+delay_in_seconds = "0.0"
+
+[node name="Walking" type="Node" parent="StateChart/Root/Movement" unique_id=1085285772]
+script = ExtResource("4_qd3e3")
+
+[node name="stop_walking" type="Node" parent="StateChart/Root/Movement/Walking" unique_id=1694006388]
+script = ExtResource("5_qd3e3")
+to = NodePath("../../Idle")
+event = &"stop_walking"
+delay_in_seconds = "0.0"
+
+[node name="jump" type="Node" parent="StateChart/Root/Movement/Walking" unique_id=2042496281]
+script = ExtResource("5_qd3e3")
+to = NodePath("../../Jump")
+event = &"jump"
+delay_in_seconds = "0.0"
+
+[node name="Jump" type="Node" parent="StateChart/Root/Movement" unique_id=1121138587]
+script = ExtResource("4_qd3e3")
+
+[node name="fall" type="Node" parent="StateChart/Root/Movement/Jump" unique_id=1644808464]
+script = ExtResource("5_qd3e3")
+to = NodePath("../../Fall")
+delay_in_seconds = "0.0"
+
+[node name="Fall" type="Node" parent="StateChart/Root/Movement" unique_id=1170786969]
+script = ExtResource("4_qd3e3")
+
+[node name="Interaction" type="Node" parent="StateChart/Root" unique_id=1983971050]
+script = ExtResource("3_hss88")
+initial_state = NodePath("Hands_free")
+
+[node name="Hands_free" type="Node" parent="StateChart/Root/Interaction" unique_id=334571493]
+script = ExtResource("4_qd3e3")
+
+[node name="Picking_up" type="Node" parent="StateChart/Root/Interaction" unique_id=1096024709]
+script = ExtResource("4_qd3e3")
+
+[connection signal="state_physics_processing" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Movement/Walking" to="." method="_on_walking_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Movement/Jump" to="." method="_on_jump_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Movement/Fall" to="." method="_on_fall_state_physics_processing"]

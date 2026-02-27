@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://5xytmqa8p265"]
+
+[ext_resource type="Texture2D" uid="uid://dblmkmncr8d71" path="res://assets/prototype_512x512_orange.png" id="1_jbqir"]
+[ext_resource type="PackedScene" uid="uid://b6ap3p4ekbxu3" path="res://scenes/characters/player/player.tscn" id="2_yautc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yautc"]
+albedo_texture = ExtResource("1_jbqir")
+uv1_triplanar = true
+
+[node name="Level" type="Node3D" unique_id=1097914629]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1036039104]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=865976989]
+size = Vector3(50, 1, 50)
+material = SubResource("StandardMaterial3D_yautc")
+
+[node name="Player" parent="CSGCombiner3D/CSGBox3D" unique_id=323220209 instance=ExtResource("2_yautc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0795622, 0)
