@@ -49,7 +49,7 @@ script = ExtResource("4_qd3e3")
 
 [node name="to_walk" type="Node" parent="StateChart/Root/Movement/Idle" unique_id=344733278]
 script = ExtResource("5_qd3e3")
-to = NodePath("../../Walk")
+to = NodePath("../../Walking")
 event = &"walk"
 delay_in_seconds = "0.0"
 
@@ -65,22 +65,22 @@ to = NodePath("../../Fall")
 event = &"fall"
 delay_in_seconds = "0.0"
 
-[node name="Walk" type="Node" parent="StateChart/Root/Movement" unique_id=1085285772]
+[node name="Walking" type="Node" parent="StateChart/Root/Movement" unique_id=1085285772]
 script = ExtResource("4_qd3e3")
 
-[node name="to_idle" type="Node" parent="StateChart/Root/Movement/Walk" unique_id=1694006388]
+[node name="to_idle" type="Node" parent="StateChart/Root/Movement/Walking" unique_id=1694006388]
 script = ExtResource("5_qd3e3")
 to = NodePath("../../Idle")
 event = &"idle"
 delay_in_seconds = "0.0"
 
-[node name="to_jump" type="Node" parent="StateChart/Root/Movement/Walk" unique_id=2042496281]
+[node name="to_jump" type="Node" parent="StateChart/Root/Movement/Walking" unique_id=2042496281]
 script = ExtResource("5_qd3e3")
 to = NodePath("../../Jump")
 event = &"jump"
 delay_in_seconds = "0.0"
 
-[node name="to_fall" type="Node" parent="StateChart/Root/Movement/Walk" unique_id=40487583]
+[node name="to_fall" type="Node" parent="StateChart/Root/Movement/Walking" unique_id=40487583]
 script = ExtResource("5_qd3e3")
 to = NodePath("../../Fall")
 event = &"fall"
@@ -100,7 +100,7 @@ script = ExtResource("4_qd3e3")
 
 [node name="to_walk" type="Node" parent="StateChart/Root/Movement/Fall" unique_id=157018791]
 script = ExtResource("5_qd3e3")
-to = NodePath("../../Walk")
+to = NodePath("../../Walking")
 event = &"walk"
 delay_in_seconds = "0.0"
 
@@ -121,7 +121,7 @@ script = ExtResource("4_qd3e3")
 script = ExtResource("4_qd3e3")
 
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_physics_processing"]
-[connection signal="state_physics_processing" from="StateChart/Root/Movement/Walk" to="." method="_on_walking_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Movement/Walking" to="." method="_on_walking_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Movement/Jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Jump" to="." method="_on_jump_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Fall" to="." method="_on_fall_state_physics_processing"]

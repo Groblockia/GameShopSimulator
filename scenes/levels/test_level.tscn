@@ -7,13 +7,40 @@
 albedo_texture = ExtResource("1_jbqir")
 uv1_triplanar = true
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yautc"]
+sky_top_color = Color(0.2849, 0.49511, 0.77, 1)
+sky_horizon_color = Color(0.5226, 0.5791033, 0.67, 1)
+ground_bottom_color = Color(0.44660002, 0.58674, 0.77, 1)
+ground_horizon_color = Color(0.52156866, 0.5803922, 0.67058825, 1)
+
+[sub_resource type="Sky" id="Sky_48ne7"]
+sky_material = SubResource("ProceduralSkyMaterial_yautc")
+
+[sub_resource type="Environment" id="Environment_6xh4u"]
+background_mode = 2
+sky = SubResource("Sky_48ne7")
+tonemap_mode = 4
+tonemap_agx_contrast = 1.5
+
 [node name="Level" type="Node3D" unique_id=1097914629]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1036039104]
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=865976989]
 size = Vector3(50, 1, 50)
 material = SubResource("StandardMaterial3D_yautc")
 
-[node name="Player" parent="CSGCombiner3D/CSGBox3D" unique_id=323220209 instance=ExtResource("2_yautc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0795622, 0)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=28426915]
+environment = SubResource("Environment_6xh4u")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1115511127]
+transform = Transform3D(0.7622844, -0.5444415, 0.35000852, 0, 0.540769, 0.84117115, -0.64724225, -0.6412116, 0.41221976, 0, 20, 0)
+light_color = Color(1, 0.883, 0.82, 1)
+shadow_enabled = true
+directional_shadow_split_1 = 0.05
+directional_shadow_split_2 = 0.1
+directional_shadow_split_3 = 0.25
+
+[node name="Player" parent="." unique_id=323220209 instance=ExtResource("2_yautc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5620856, 0)
