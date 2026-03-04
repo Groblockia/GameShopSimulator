@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://d2kmugtm3bmv7"]
+
+[ext_resource type="Script" uid="uid://b66tpjge4jdle" path="res://scenes/test/interactible_box.gd" id="1_qi042"]
+[ext_resource type="Shader" uid="uid://pkfq3uanf6gn" path="res://assets/shader/outline.gdshader" id="2_18ons"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oq3y3"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oq3y3"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_oq3y3")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qi042"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1v6w"]
+render_priority = 0
+shader = ExtResource("2_18ons")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qi042"]
+material = SubResource("ShaderMaterial_m1v6w")
+size = Vector3(1.05, 1.05, 1.05)
+
+[node name="Interactible_box" type="Area3D" unique_id=767377337]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_qi042")
+charged = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=908562882]
+mesh = SubResource("BoxMesh_oq3y3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1739664986]
+shape = SubResource("ConcavePolygonShape3D_qi042")
+
+[node name="outline" type="MeshInstance3D" parent="." unique_id=1007845148]
+visible = false
+mesh = SubResource("BoxMesh_qi042")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1388672326]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=981370916]
+transform = Transform3D(0.975, 0, 0, 0, 0.975, 0, 0, 0, 0.975, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_qi042")

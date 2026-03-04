@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dblmkmncr8d71" path="res://assets/prototype_512x512_orange.png" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://b6ap3p4ekbxu3" path="res://scenes/characters/player/player.tscn" id="2_yautc"]
+[ext_resource type="PackedScene" uid="uid://d2kmugtm3bmv7" path="res://scenes/test/interactible_box.tscn" id="3_fr1um"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yautc"]
 albedo_texture = ExtResource("1_jbqir")
@@ -26,9 +27,50 @@ tonemap_agx_contrast = 1.5
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1036039104]
 use_collision = true
+collision_mask = 0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=865976989]
 size = Vector3(50, 1, 50)
+material = SubResource("StandardMaterial3D_yautc")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1292823453]
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 7.6068068, 0.5322652, -1.5258713)
+size = Vector3(4, 1, 2)
+material = SubResource("StandardMaterial3D_yautc")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D" unique_id=447266937]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 11.411, 1.031, -1.526)
+size = Vector3(4, 1, 2)
+material = SubResource("StandardMaterial3D_yautc")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D" unique_id=16133013]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 11.096, 1.462, 1.474)
+size = Vector3(4, 1, 2)
+material = SubResource("StandardMaterial3D_yautc")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D" unique_id=632568301]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 10.671, 1.799, 4.474)
+size = Vector3(4, 1, 2)
+material = SubResource("StandardMaterial3D_yautc")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1612020218]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 10.173, 2.014, 7.474)
+size = Vector3(4, 1, 2)
+material = SubResource("StandardMaterial3D_yautc")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1898393844]
+transform = Transform3D(0.8660254, -0.5, 0, 0.5, 0.8660254, 0, 0, 0, 1, 7.6068068, 0.5322652, 1.4741287)
+size = Vector3(4, 1, 2)
+material = SubResource("StandardMaterial3D_yautc")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=172266566]
+transform = Transform3D(0.7071067, -0.70710677, 0, 0.70710677, 0.7071067, 0, 0, 0, 1, 7.6068068, 0.5322652, 4.4741287)
+size = Vector3(4, 1, 2)
+material = SubResource("StandardMaterial3D_yautc")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=685938428]
+transform = Transform3D(0.49999994, -0.8660253, 0, 0.8660253, 0.49999994, 0, 0, 0, 1, 7.6068068, 0.5322652, 7.4741287)
+size = Vector3(4, 1, 2)
 material = SubResource("StandardMaterial3D_yautc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=28426915]
@@ -44,3 +86,27 @@ directional_shadow_split_3 = 0.25
 
 [node name="Player" parent="." unique_id=323220209 instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5620856, 0)
+
+[node name="Interactible_box" parent="." unique_id=767377337 instance=ExtResource("3_fr1um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2960386, 1.184314, -6.529553)
+charge_time = 0.8
+
+[node name="Label3D" type="Label3D" parent="Interactible_box" unique_id=267614290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3281682, 0)
+text = "Charged 0.8s"
+
+[node name="Interactible_box2" parent="." unique_id=2034798587 instance=ExtResource("3_fr1um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8209615, 1.1843143, -6.54094)
+charge_time = 3.0
+
+[node name="Label3D" type="Label3D" parent="Interactible_box2" unique_id=1698804460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3281682, 0)
+text = "Charged 3.0s"
+
+[node name="Interactible_box3" parent="." unique_id=2034137254 instance=ExtResource("3_fr1um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5346828, 1.1843143, -6.54094)
+charged = false
+
+[node name="Label3D" type="Label3D" parent="Interactible_box3" unique_id=1542800170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3281682, 0)
+text = "Normal"

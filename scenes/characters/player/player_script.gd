@@ -13,6 +13,7 @@ class_name Player extends CharacterBody3D
 var input_dir: Vector2
 var direction: Vector3
 var player_can_move := true
+var old_object
 
 func _process(_delta: float) -> void:
 	set_movement_direction()

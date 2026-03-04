@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://wu6rt5d3vxae"]
+
+[ext_resource type="Script" uid="uid://bsks7cw1m5vpf" path="res://ui/interactions/interaction_container.gd" id="1_8gg4k"]
+
+[node name="InteractionContainer" type="Control" unique_id=869925652]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_8gg4k")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=855278429]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=1255174786]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Press \"e\" to interact"

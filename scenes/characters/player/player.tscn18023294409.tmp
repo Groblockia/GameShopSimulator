@@ -9,8 +9,6 @@
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_qd3e3"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="6_6avc5"]
 [ext_resource type="Script" uid="uid://brydmfqeuhg11" path="res://scenes/characters/player/interaction_component.gd" id="9_42irl"]
-[ext_resource type="PackedScene" uid="uid://lu6x58jsse4t" path="res://ui/interactions/charged_interaction_container.tscn" id="10_3xnwo"]
-[ext_resource type="PackedScene" uid="uid://wu6rt5d3vxae" path="res://ui/interactions/interaction_container.tscn" id="11_djydg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lpkh3"]
 
@@ -20,8 +18,6 @@
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_e6l77")
-SPEED = 5.0
-JUMP_FORCE = 4.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1269925753]
 shape = SubResource("CapsuleShape3D_lpkh3")
@@ -141,13 +137,14 @@ script = ExtResource("9_42irl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1149387319]
 
-[node name="ChargedInteractionContainer" parent="CanvasLayer" unique_id=869925652 instance=ExtResource("10_3xnwo")]
+[node name="Label" type="ProgressBar" parent="CanvasLayer" unique_id=207603744]
 unique_name_in_owner = true
-text = "Hold \"e\" to interact"
-
-[node name="InteractionContainer" parent="CanvasLayer" unique_id=1574185563 instance=ExtResource("11_djydg")]
-unique_name_in_owner = true
-text = "Press \"e\" to interact"
+offset_left = 544.0
+offset_top = 29.0
+offset_right = 604.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 30
+max_value = 10.0
 
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Walk" to="." method="_on_walking_state_physics_processing"]
