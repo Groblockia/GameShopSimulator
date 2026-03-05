@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d2kmugtm3bmv7"]
 
-[ext_resource type="Script" uid="uid://b66tpjge4jdle" path="res://scenes/test/interactible_box.gd" id="1_qi042"]
+[ext_resource type="Script" uid="uid://b66tpjge4jdle" path="res://scenes/test/random_interactible/random_interactible.gd" id="1_qi042"]
 [ext_resource type="Shader" uid="uid://pkfq3uanf6gn" path="res://assets/shader/outline.gdshader" id="2_18ons"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oq3y3"]
@@ -24,11 +24,10 @@ shader_parameter/outline_width = 1.0
 material = SubResource("ShaderMaterial_m1v6w")
 size = Vector3(1.05, 1.05, 1.05)
 
-[node name="Interactible_box" type="Area3D" unique_id=767377337]
+[node name="random_interactible" type="Area3D" unique_id=767377337]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_qi042")
-charged = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=908562882]
 mesh = SubResource("BoxMesh_oq3y3")

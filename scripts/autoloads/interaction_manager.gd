@@ -1,6 +1,6 @@
 extends Node
 
-signal interact()
+signal interact
 signal start_highlight
 signal stop_highlight
 

@@ -29,6 +29,10 @@ enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://a
 
 version_hint=""
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
 [input]
 
 forward={

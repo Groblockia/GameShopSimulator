@@ -1,11 +1,14 @@
 class_name Player extends CharacterBody3D
 
+@export_category("Movement")
 @export var SPEED := 6.0
 @export var ACCEL := 6.0
 @export var DECCEL := 10.0
 @export var AIR_DECCEL := 2.0
 @export var JUMP_FORCE := 7.0
 @export var GRAVITY := 20.0
+@export_category("Positions for hand-held items")
+@export var box_position := Node3D
 
 @onready var head = $Head
 @onready var stateChart = $StateChart

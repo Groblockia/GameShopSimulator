@@ -17,15 +17,26 @@ func _process(delta: float) -> void:
 		on_object = false
 		charged_time = 0
 	
+	if Input.is_action_just_pressed("interact"):
+		if on_object:
+			if InteractionManager.need_charging(current_col):
+				return
+			else:
+				interact()
+	
 	if Input.is_action_pressed("interact"):
 		if on_object:
 			charged_time += delta
 		#print("%.2f s" % charged_time)
 		
 	if Input.is_action_just_released("interact"):
-		interact()
-		on_object = false
-		charged_time = 0
+		if on_object:
+			if InteractionManager.need_charging(current_col):
+				interact()
+				on_object = false
+				charged_time = 0
+			else:
+				return
 
 func interact():
 	InteractionManager.send_interact_event(player, current_col, charged_time)

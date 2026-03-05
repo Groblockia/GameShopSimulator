@@ -16,12 +16,13 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e6l77"]
 
-[node name="Player" type="CharacterBody3D" unique_id=323220209]
+[node name="Player" type="CharacterBody3D" unique_id=323220209 node_paths=PackedStringArray("box_position")]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_e6l77")
 SPEED = 5.0
 JUMP_FORCE = 4.5
+box_position = NodePath("box_position_marker")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1269925753]
 shape = SubResource("CapsuleShape3D_lpkh3")
@@ -148,6 +149,9 @@ text = "Hold \"e\" to interact"
 [node name="InteractionContainer" parent="CanvasLayer" unique_id=1574185563 instance=ExtResource("11_djydg")]
 unique_name_in_owner = true
 text = "Press \"e\" to interact"
+
+[node name="box_position_marker" type="Marker3D" parent="." unique_id=142431463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56826496, -1.3752612)
 
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Walk" to="." method="_on_walking_state_physics_processing"]

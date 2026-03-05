@@ -12,6 +12,11 @@ func interaction(_player: Player, charged_time: float):
 	else:
 		switch_color()
 
+func start_highlight(_player: Player, _charged_time: float) -> void:
+	outline.show()
+
+func stop_highlight(_player: Player, _charged_time: float) -> void:
+	outline.hide()
 
 func switch_color():
 	state = !state
@@ -19,9 +24,3 @@ func switch_color():
 		material.albedo_color = Color(0, 1, 0) 
 	else:
 		material.albedo_color = Color(1, 0, 0) 
-
-func start_highlight(_player: Player, _charged_time: float) -> void:
-	outline.show()
-
-func stop_highlight(_player: Player, _charged_time: float) -> void:
-	outline.hide()
