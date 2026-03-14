@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	# camera movement
-	if player.player_can_move:
+	if !player.player_paused:
 		if event is InputEventMouseMotion:
 			rotate_y(-event.relative.x * 0.005)
 			camera.rotate_x(-event.relative.y * 0.005)

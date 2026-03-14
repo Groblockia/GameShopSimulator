@@ -5,18 +5,19 @@ extends Interactable
 
 var state := false
 
+func _process(_delta: float) -> void:
+	if highlighted:
+		outline.show()
+	else:
+		outline.hide()
+	highlighted = false
+
 func interaction(_player: Player, charged_time: float):
 	if charged == true:
 		if charged_time >= charge_time:
 			switch_color()
 	else:
 		switch_color()
-
-func start_highlight(_player: Player, _charged_time: float) -> void:
-	outline.show()
-
-func stop_highlight(_player: Player, _charged_time: float) -> void:
-	outline.hide()
 
 func switch_color():
 	state = !state

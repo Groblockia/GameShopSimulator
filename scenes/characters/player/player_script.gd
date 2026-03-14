@@ -11,15 +11,22 @@ class_name Player extends CharacterBody3D
 @export var box_position := Node3D
 
 @onready var head = $Head
-@onready var stateChart = $StateChart
+@onready var stateChart = %StateChart
 
 var input_dir: Vector2
 var direction: Vector3
-var player_can_move := true
-var old_object
+var prev_velocity: Vector3
+var player_paused := false
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
 
 func _process(_delta: float) -> void:
 	set_movement_direction()
+	toggle_mouse()
+	stateChart.set_expression_property("player_paused", player_paused)
+	stateChart.send_event("pause")
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -44,6 +51,15 @@ func move(delta: float, speed: float, accel: float = 6.0) -> void:
 	velocity.z = lerp(velocity.z, direction.z * speed, delta * accel)
 	
 	move_and_slide()
+
+func toggle_mouse() -> void:
+	if Input.is_action_just_pressed("toggle_mouse"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			player_paused = true
+		elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			player_paused = false
 
 #region Movement state machine
 func _on_idle_state_physics_processing(delta: float) -> void:
@@ -77,5 +93,12 @@ func _on_fall_state_physics_processing(delta: float) -> void:
 			stateChart.send_event("walk")
 		else:
 			stateChart.send_event("idle")
+
+func _on_paused_state_entered() -> void:
+	prev_velocity = velocity
+	velocity = Vector3.ZERO
+
+func _on_paused_state_exited() -> void:
+	velocity = prev_velocity
 
 #endregion

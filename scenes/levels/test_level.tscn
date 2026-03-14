@@ -2,7 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dblmkmncr8d71" path="res://assets/prototype_512x512_orange.png" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://b6ap3p4ekbxu3" path="res://scenes/characters/player/player.tscn" id="2_yautc"]
-[ext_resource type="PackedScene" uid="uid://d2kmugtm3bmv7" path="res://scenes/test/random_interactible/random_interactible.tscn" id="3_fr1um"]
+[ext_resource type="PackedScene" uid="uid://d2kmugtm3bmv7" path="res://scenes/test/test_interactible/test_interactible.tscn" id="3_fr1um"]
+[ext_resource type="PackedScene" uid="uid://cn52v6plvyhxt" path="res://scenes/test/test_pickable/test_pickable.tscn" id="4_v45ci"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yautc"]
 albedo_texture = ExtResource("1_jbqir")
@@ -87,6 +88,13 @@ directional_shadow_split_3 = 0.25
 [node name="Player" parent="." unique_id=323220209 instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5620856, 0)
 
-[node name="random_interactible" parent="." unique_id=767377337 instance=ExtResource("3_fr1um")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1883543, -4.0133657)
+[node name="test_interactible" parent="." unique_id=767377337 instance=ExtResource("3_fr1um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24714783, 1.0000007, -5.3720503)
+
+[node name="test_interactible2" parent="." unique_id=1151021517 instance=ExtResource("3_fr1um")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.956321, 1.0000007, -4.635398)
 charged = true
+charge_time = 0.5
+
+[node name="test_pickable" parent="." unique_id=902808013 instance=ExtResource("4_v45ci")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3.665357, 1.0000007, -1.4123785)

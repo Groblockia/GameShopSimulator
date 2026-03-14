@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d2kmugtm3bmv7"]
 
-[ext_resource type="Script" uid="uid://b66tpjge4jdle" path="res://scenes/test/random_interactible/random_interactible.gd" id="1_qi042"]
+[ext_resource type="Script" uid="uid://b66tpjge4jdle" path="res://scenes/test/test_interactible/test_interactible.gd" id="1_qi042"]
 [ext_resource type="Shader" uid="uid://pkfq3uanf6gn" path="res://assets/shader/outline.gdshader" id="2_18ons"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oq3y3"]
@@ -24,7 +24,7 @@ shader_parameter/outline_width = 1.0
 material = SubResource("ShaderMaterial_m1v6w")
 size = Vector3(1.05, 1.05, 1.05)
 
-[node name="random_interactible" type="Area3D" unique_id=767377337]
+[node name="test_interactible" type="Area3D" unique_id=767377337]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_qi042")

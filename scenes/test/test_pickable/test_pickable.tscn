@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cn52v6plvyhxt"]
+
+[ext_resource type="Texture2D" uid="uid://cl4y8gi0tkitl" path="res://icon.svg" id="1_8xobo"]
+[ext_resource type="Script" uid="uid://dlwi737ooaofy" path="res://scenes/test/test_pickable/test_pickable.gd" id="1_m2e0k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2e0k"]
+albedo_texture = ExtResource("1_8xobo")
+
+[sub_resource type="BoxMesh" id="BoxMesh_x3k6u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8xobo"]
+size = Vector3(1, 0.5342407, 0.6738281)
+
+[node name="test_pickable" type="RigidBody3D" unique_id=902808013]
+script = ExtResource("1_m2e0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1119899397]
+transform = Transform3D(1, 0, 0, 0, 0.53104925, 0, 0, 0, 0.67171025, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_m2e0k")
+mesh = SubResource("BoxMesh_x3k6u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2004373164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000579834, 0.0009765625)
+shape = SubResource("BoxShape3D_8xobo")
