@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://dcu5avmpuug2t"
 InteractionManager="*uid://dkyfnpf706ocv"
+PickupManager="*uid://2ivki13wuswo"
 
 [editor_plugins]
 

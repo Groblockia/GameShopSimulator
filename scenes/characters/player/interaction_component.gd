@@ -27,6 +27,10 @@ func normal_interact():
 	if Input.is_action_just_pressed("interact"):
 		charged_time = 0
 		if is_on_object:
+			
+			if current_col is Pickable:
+				InteractionManager.update_state(self, current_col)
+				
 			if InteractionManager.needs_charging(current_col):
 				return
 			else:

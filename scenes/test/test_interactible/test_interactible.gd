@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 		outline.hide()
 	highlighted = false
 
-func interaction(_player: Player, charged_time: float):
+func _interaction(_player: Player, charged_time: float):
 	if charged == true:
 		if charged_time >= charge_time:
 			switch_color()

@@ -1,9 +1,21 @@
 [gd_scene format=3 uid="uid://5xytmqa8p265"]
 
+[ext_resource type="Texture2D" uid="uid://bmanr8sfnjkc2" path="res://assets/prototype_512x512_blue3.png" id="1_48ne7"]
 [ext_resource type="Texture2D" uid="uid://dblmkmncr8d71" path="res://assets/prototype_512x512_orange.png" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://b6ap3p4ekbxu3" path="res://scenes/characters/player/player.tscn" id="2_yautc"]
 [ext_resource type="PackedScene" uid="uid://d2kmugtm3bmv7" path="res://scenes/test/test_interactible/test_interactible.tscn" id="3_fr1um"]
 [ext_resource type="PackedScene" uid="uid://cn52v6plvyhxt" path="res://scenes/test/test_pickable/test_pickable.tscn" id="4_v45ci"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v45ci"]
+albedo_texture = ExtResource("1_48ne7")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_v45ci"]
+material = SubResource("StandardMaterial3D_v45ci")
+size = Vector3(500, 1, 500)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v45ci"]
+size = Vector3(500, 1, 500)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yautc"]
 albedo_texture = ExtResource("1_jbqir")
@@ -26,13 +38,17 @@ tonemap_agx_contrast = 1.5
 
 [node name="Level" type="Node3D" unique_id=1097914629]
 
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=681934622]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1904399449]
+mesh = SubResource("BoxMesh_v45ci")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1491700090]
+shape = SubResource("BoxShape3D_v45ci")
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1036039104]
 use_collision = true
 collision_mask = 0
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=865976989]
-size = Vector3(50, 1, 50)
-material = SubResource("StandardMaterial3D_yautc")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1292823453]
 transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 7.6068068, 0.5322652, -3.5258713)

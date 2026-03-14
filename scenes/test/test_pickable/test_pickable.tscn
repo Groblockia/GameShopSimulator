@@ -12,6 +12,10 @@ albedo_texture = ExtResource("1_8xobo")
 size = Vector3(1, 0.5342407, 0.6738281)
 
 [node name="test_pickable" type="RigidBody3D" unique_id=902808013]
+collision_layer = 16
+collision_mask = 17
+mass = 5.0
+freeze_mode = 1
 script = ExtResource("1_m2e0k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1119899397]

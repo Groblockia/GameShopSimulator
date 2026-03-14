@@ -1,10 +1,5 @@
-class_name Interactable extends Area3D
+class_name Pickable extends RigidBody3D
  
-## does item require charged interaction?
-@export var charged := false
-## duration in seconds
-@export var charge_time := 2.0
-
 var highlighted
 
 ## Use this to have a highlight:
