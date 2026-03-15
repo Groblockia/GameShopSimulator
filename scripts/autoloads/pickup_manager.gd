@@ -19,7 +19,7 @@ func pickup(object) -> void:
 		current_object.freeze = false
 		current_object.linear_velocity = current_object.linear_velocity/current_object.mass
 	else:
-		if object is Pickable:
+		if object is Interactable && object.is_pickable == true:
 			current_object = object
 			current_object.freeze = true
 			picked_up = true
@@ -27,7 +27,7 @@ func pickup(object) -> void:
 			current_object.set_collision_layer_value(5, false)
 
 func send_highlighting_event(object: Node3D) -> void:
-	if object is Pickable:
+	if object is Interactable && object.is_pickable == true:
 		highlight.connect(object._highlight)
 		highlight.emit()
 		highlight.disconnect(object._highlight)

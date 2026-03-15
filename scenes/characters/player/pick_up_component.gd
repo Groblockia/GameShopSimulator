@@ -5,23 +5,21 @@ extends Node3D
 @onready var stateChart = %StateChart
 
 var current_col
-var is_on_object := false
 
 func _ready() -> void:
 	PickupManager.set_player(player)
 
 func _process(_delta: float) -> void:
-	is_colliding_with_pickable()
+	current_col = pickupRay.get_collider()
 	interact()
 	highlighting()
 	manage_ui()
 
-func is_colliding_with_pickable():
-	current_col = pickupRay.get_collider()
-	if current_col is Pickable:
-		is_on_object = true
+func is_colliding_with_pickable() -> bool:
+	if current_col is Interactable && current_col.is_pickable == true:
+		return true
 	else:
-		is_on_object = false
+		return false
 
 func interact():
 	if Input.is_action_just_pressed("interact"):
@@ -31,7 +29,7 @@ func highlighting() -> void:
 	PickupManager.send_highlighting_event(current_col)
 
 func manage_ui():
-	if current_col is Pickable:
+	if is_colliding_with_pickable():
 		%PickableInteractionContainer.show()
 		show_interaction_ui()
 	else:

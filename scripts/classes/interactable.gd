@@ -1,13 +1,16 @@
-class_name Interactable extends Area3D
+class_name Interactable extends Node3D
  
-## does item require charged interaction?
+## Does item require charging for interaction?
 @export var charged := false
-## duration in seconds
+## Duration needed in seconds
 @export var charge_time := 2.0
+## Is object `Pickable`? [u]Only works for RigidBody3D objects[/u]
+@export var is_pickable := false
+var picked_up := false
 
 var highlighted
 
-## Use this to have a highlight:
+## Use this to show highlight:
 #func _process(_delta: float) -> void:
 	#if highlighted:
 		#show outline
@@ -19,5 +22,5 @@ var highlighted
 func _interaction(_player: Player, _charged_time: float) -> void:
 	print("don't forget to override interaction()")
 
-func _highlight(_player: Player):
+func _highlight():
 	highlighted = true

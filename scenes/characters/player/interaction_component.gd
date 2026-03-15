@@ -5,7 +5,6 @@ extends Node3D
 @onready var stateChart = %StateChart
 
 var current_col
-var is_on_object := false
 var charged_time: float
 
 func _process(delta: float) -> void:
@@ -15,18 +14,18 @@ func _process(delta: float) -> void:
 	normal_interact()
 	charged_interact(delta)
 
-func is_colliding_with_interactable():
+func is_colliding_with_interactable() -> bool:
 	current_col = interactRay.get_collider()
 	if current_col is Interactable:
-		is_on_object = true
+		return true
 	else:
-		is_on_object = false
 		charged_time = 0
+		return false
 
 func normal_interact():
 	if Input.is_action_just_pressed("interact"):
 		charged_time = 0
-		if is_on_object:
+		if is_colliding_with_interactable:
 			if InteractionManager.needs_charging(current_col):
 				return
 			else:
@@ -34,7 +33,7 @@ func normal_interact():
 
 func charged_interact(delta: float):
 	if Input.is_action_pressed("interact"):
-		if is_on_object:
+		if is_colliding_with_interactable:
 			charged_time += delta
 	
 	if Input.is_action_just_released("interact"):

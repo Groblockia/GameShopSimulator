@@ -9,17 +9,17 @@ func send_interact_event(sender: Player, object: Node3D, charged_time: float = 0
 		interact.emit(sender, charged_time)
 		interact.disconnect(object._interaction)
 
-func send_highlighting_event(sender: Player, object: Node3D) -> void:
+func send_highlighting_event(_sender: Player, object: Node3D) -> void:
 	if object is Interactable:
 		highlight.connect(object._highlight)
-		highlight.emit(sender)
+		highlight.emit()
 		highlight.disconnect(object._highlight)
 
 ## does [param object] needs charging to interact?
-func needs_charging(object: Node3D) -> bool:
+func needs_charging(object: Node3D):
 	if object is Interactable:
 		if object.charged == true:
 			return true
 		else: 
 			return false
-	return false
+	return 0

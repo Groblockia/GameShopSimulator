@@ -21,10 +21,12 @@ config/icon="res://icon.svg"
 GameManager="*uid://dcu5avmpuug2t"
 InteractionManager="*uid://dkyfnpf706ocv"
 PickupManager="*uid://2ivki13wuswo"
+Global="*uid://0hmprturx266"
+DiscordRPCLoader="*uid://cvcma512jdlws"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg")
 
 [godots]
 
