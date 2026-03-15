@@ -13,6 +13,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	is_colliding_with_pickable()
 	interact()
+	highlighting()
+	manage_ui()
 
 func is_colliding_with_pickable():
 	current_col = pickupRay.get_collider()
@@ -23,4 +25,17 @@ func is_colliding_with_pickable():
 
 func interact():
 	if Input.is_action_just_pressed("interact"):
-		PickupManager.interact(current_col)
+		PickupManager.pickup(current_col)
+
+func highlighting() -> void:
+	PickupManager.send_highlighting_event(current_col)
+
+func manage_ui():
+	if current_col is Pickable:
+		%PickableInteractionContainer.show()
+		show_interaction_ui()
+	else:
+		%PickableInteractionContainer.hide()
+
+func show_interaction_ui():
+	%PickableInteractionContainer.position = %Camera.unproject_position(current_col.global_position)

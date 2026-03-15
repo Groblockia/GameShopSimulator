@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://wu6rt5d3vxae"]
+[gd_scene format=3 uid="uid://3t187s8s78i3"]
 
-[ext_resource type="Script" uid="uid://bsks7cw1m5vpf" path="res://ui/interactions/interaction_container.gd" id="1_8gg4k"]
+[ext_resource type="Script" uid="uid://duyu6eagotsho" path="res://ui/interactions/pickable_interaction_container.gd" id="1_8wyx5"]
 
-[node name="InteractionContainer" type="Control" unique_id=869925652]
+[node name="PickableInteractionContainer" type="Control" unique_id=869925652]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,8 +10,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_8gg4k")
-text = "Press \"E\" to interact"
+script = ExtResource("1_8wyx5")
+text = "Press \"E\" to pick up"
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=855278429]
 layout_mode = 0

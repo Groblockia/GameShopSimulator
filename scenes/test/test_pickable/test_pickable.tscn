@@ -2,14 +2,27 @@
 
 [ext_resource type="Texture2D" uid="uid://cl4y8gi0tkitl" path="res://icon.svg" id="1_8xobo"]
 [ext_resource type="Script" uid="uid://dlwi737ooaofy" path="res://scenes/test/test_pickable/test_pickable.gd" id="1_m2e0k"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2e0k"]
-albedo_texture = ExtResource("1_8xobo")
-
-[sub_resource type="BoxMesh" id="BoxMesh_x3k6u"]
+[ext_resource type="Shader" uid="uid://pkfq3uanf6gn" path="res://assets/shader/outline.gdshader" id="3_60b4m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8xobo"]
 size = Vector3(1, 0.5342407, 0.6738281)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gvwo"]
+albedo_texture = ExtResource("1_8xobo")
+
+[sub_resource type="BoxMesh" id="BoxMesh_8xobo"]
+material = SubResource("StandardMaterial3D_8gvwo")
+size = Vector3(1, 0.54, 0.685)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11cdj"]
+render_priority = 0
+shader = ExtResource("3_60b4m")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_vbnn1"]
+material = SubResource("ShaderMaterial_11cdj")
+size = Vector3(1.05, 0.59, 0.735)
 
 [node name="test_pickable" type="RigidBody3D" unique_id=902808013]
 collision_layer = 16
@@ -18,11 +31,12 @@ mass = 5.0
 freeze_mode = 1
 script = ExtResource("1_m2e0k")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1119899397]
-transform = Transform3D(1, 0, 0, 0, 0.53104925, 0, 0, 0, 0.67171025, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_m2e0k")
-mesh = SubResource("BoxMesh_x3k6u")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2004373164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000579834, 0.0009765625)
 shape = SubResource("BoxShape3D_8xobo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1126532799]
+mesh = SubResource("BoxMesh_8xobo")
+
+[node name="outline" type="MeshInstance3D" parent="." unique_id=1293339850]
+mesh = SubResource("BoxMesh_vbnn1")

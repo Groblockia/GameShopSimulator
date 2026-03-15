@@ -14,5 +14,5 @@ var highlighted
 func _interaction(_player: Player, _charged_time: float) -> void:
 	print("don't forget to override interaction()")
 
-func _highlight(_player: Player):
+func _highlight():
 	highlighted = true

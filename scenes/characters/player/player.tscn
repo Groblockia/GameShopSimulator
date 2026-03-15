@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://lu6x58jsse4t" path="res://ui/interactions/charged_interaction_container.tscn" id="10_3xnwo"]
 [ext_resource type="Script" uid="uid://cx5w845o3m7mh" path="res://scenes/characters/player/pick_up_component.gd" id="11_blysn"]
 [ext_resource type="PackedScene" uid="uid://wu6rt5d3vxae" path="res://ui/interactions/interaction_container.tscn" id="11_djydg"]
+[ext_resource type="PackedScene" uid="uid://3t187s8s78i3" path="res://ui/interactions/pickable_interaction_container.tscn" id="12_hv5x3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lpkh3"]
 
@@ -203,13 +204,14 @@ script = ExtResource("11_blysn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1149387319]
 
-[node name="ChargedInteractionContainer" parent="CanvasLayer" unique_id=869925652 instance=ExtResource("10_3xnwo")]
+[node name="InteractionContainer" parent="CanvasLayer" unique_id=421859451 instance=ExtResource("11_djydg")]
 unique_name_in_owner = true
-text = "Hold \"e\" to interact"
 
-[node name="InteractionContainer" parent="CanvasLayer" unique_id=1574185563 instance=ExtResource("11_djydg")]
+[node name="ChargedInteractionContainer" parent="CanvasLayer" unique_id=867686348 instance=ExtResource("10_3xnwo")]
 unique_name_in_owner = true
-text = "Press \"e\" to interact"
+
+[node name="PickableInteractionContainer" parent="CanvasLayer" unique_id=869925652 instance=ExtResource("12_hv5x3")]
+unique_name_in_owner = true
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1184132311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03445369, -0.9829799)
