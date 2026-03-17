@@ -4,9 +4,15 @@ signal highlight
 
 var player: Player
 
-var picked_up := false
+var picked_up := false:
+	set(value):
+		picked_up = value
+		if value == false:
+			drop()
+
 var current_object: Node3D
 var pickup_distance := Vector3(0.0,-0.6,-1.0)
+var pickup_lerp := 0.2
 
 func set_player(_player: Player):
 	player = _player
@@ -26,6 +32,11 @@ func pickup(object) -> void:
 			current_object.picked_up = true
 			current_object.set_collision_layer_value(5, false)
 
+func drop() -> void:
+	var camera_transform = player.camera.global_transform
+	current_object.global_transform = camera_transform.translated_local(pickup_distance)
+
+
 func send_highlighting_event(object: Node3D) -> void:
 	if object is Interactable && object.is_pickable == true:
 		highlight.connect(object._highlight)
@@ -35,4 +46,4 @@ func send_highlighting_event(object: Node3D) -> void:
 func _physics_process(_delta: float) -> void:
 	if picked_up:
 		var camera_transform = player.camera.global_transform
-		current_object.global_transform = current_object.global_transform.interpolate_with(camera_transform.translated_local(pickup_distance), 0.4)
+		current_object.global_transform = current_object.global_transform.interpolate_with(camera_transform.translated_local(pickup_distance), pickup_lerp)

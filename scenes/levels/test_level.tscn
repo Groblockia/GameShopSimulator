@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b6ap3p4ekbxu3" path="res://scenes/characters/player/player.tscn" id="2_yautc"]
 [ext_resource type="PackedScene" uid="uid://d2kmugtm3bmv7" path="res://scenes/test/test_interactible/test_interactible.tscn" id="3_fr1um"]
 [ext_resource type="PackedScene" uid="uid://cn52v6plvyhxt" path="res://scenes/test/test_pickable/test_pickable.tscn" id="4_v45ci"]
+[ext_resource type="PackedScene" uid="uid://bwij7irlq6ma1" path="res://scenes/test/test_container.tscn" id="6_6xh4u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v45ci"]
 albedo_texture = ExtResource("1_48ne7")
@@ -114,3 +115,6 @@ charge_time = 0.5
 
 [node name="test_pickable" parent="." unique_id=902808013 instance=ExtResource("4_v45ci")]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3.665357, 1.0000007, -1.4123785)
+
+[node name="test_container" parent="." unique_id=1767349216 instance=ExtResource("6_6xh4u")]
+transform = Transform3D(0.71678877, 0, 0.6972901, 0, 1, 0, -0.6972901, 0, 0.71678877, -5.6822805, 1.5282905, -2.3108282)
