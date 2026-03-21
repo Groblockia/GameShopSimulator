@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://q00chojrtehd"]
+
+[ext_resource type="Texture2D" uid="uid://cta8g5rax1rgj" path="res://scenes/test/test_item/test1.svg" id="1_d21kf"]
+[ext_resource type="Script" uid="uid://bch0ixnj4itnr" path="res://resources/item_resource.gd" id="2_d2m02"]
+
+[resource]
+script = ExtResource("2_d2m02")
+name = "CACAPROUT"
+image = ExtResource("1_d21kf")
+metadata/_custom_type_script = "uid://bch0ixnj4itnr"

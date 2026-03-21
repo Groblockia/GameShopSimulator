@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://d2fr05pbijspx"]
+
+[ext_resource type="Texture2D" uid="uid://s33bksihoer" path="res://scenes/test/test_item/test2.svg" id="1_r2kc8"]
+[ext_resource type="Script" uid="uid://bch0ixnj4itnr" path="res://resources/item_resource.gd" id="2_xmxqs"]
+
+[resource]
+script = ExtResource("2_xmxqs")
+name = "CACAPIPI"
+image = ExtResource("1_r2kc8")
+metadata/_custom_type_script = "uid://bch0ixnj4itnr"

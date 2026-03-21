@@ -14,6 +14,7 @@ config/name="GameShopSimulator"
 config/tags=PackedStringArray("working_on")
 run/main_scene="uid://5xytmqa8p265"
 config/features=PackedStringArray("4.6", "Forward Plus")
+run/max_fps=180
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,6 +23,10 @@ GameManager="*uid://dcu5avmpuug2t"
 InteractionManager="*uid://dkyfnpf706ocv"
 PickupManager="*uid://2ivki13wuswo"
 Global="*uid://0hmprturx266"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 

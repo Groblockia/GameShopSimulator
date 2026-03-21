@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bfmsp6hdnfl06"]
+
+[ext_resource type="Script" uid="uid://c21y8uh88f2fs" path="res://scenes/test/test_item/test_gamebox.gd" id="1_6licm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6licm"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_mtwqm"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_6licm")
+size = Vector3(0.305, 0.4, 0.055)
+
+[node name="TestGamebox" type="Node3D" unique_id=1850696348]
+script = ExtResource("1_6licm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1095075478]
+mesh = SubResource("BoxMesh_mtwqm")

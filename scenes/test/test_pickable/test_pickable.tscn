@@ -40,4 +40,5 @@ shape = SubResource("BoxShape3D_8xobo")
 mesh = SubResource("BoxMesh_8xobo")
 
 [node name="outline" type="MeshInstance3D" parent="." unique_id=1293339850]
+visible = false
 mesh = SubResource("BoxMesh_vbnn1")

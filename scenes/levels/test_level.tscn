@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://5xytmqa8p265"]
 
-[ext_resource type="Texture2D" uid="uid://bmanr8sfnjkc2" path="res://assets/prototype_512x512_blue3.png" id="1_48ne7"]
-[ext_resource type="Texture2D" uid="uid://dblmkmncr8d71" path="res://assets/prototype_512x512_orange.png" id="1_jbqir"]
+[ext_resource type="Texture2D" uid="uid://bmanr8sfnjkc2" path="res://assets/textures/prototype_512x512_blue3.png" id="1_48ne7"]
+[ext_resource type="Texture2D" uid="uid://dblmkmncr8d71" path="res://assets/textures/prototype_512x512_orange.png" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://b6ap3p4ekbxu3" path="res://scenes/characters/player/player.tscn" id="2_yautc"]
 [ext_resource type="PackedScene" uid="uid://d2kmugtm3bmv7" path="res://scenes/test/test_interactible/test_interactible.tscn" id="3_fr1um"]
 [ext_resource type="PackedScene" uid="uid://cn52v6plvyhxt" path="res://scenes/test/test_pickable/test_pickable.tscn" id="4_v45ci"]
-[ext_resource type="PackedScene" uid="uid://bwij7irlq6ma1" path="res://scenes/test/test_container.tscn" id="6_6xh4u"]
+[ext_resource type="PackedScene" uid="uid://bwij7irlq6ma1" path="res://scenes/test/test_container/test_container.tscn" id="6_6xh4u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v45ci"]
 albedo_texture = ExtResource("1_48ne7")

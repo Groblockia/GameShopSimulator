@@ -12,7 +12,7 @@ var picked_up := false:
 
 var current_object: Node3D
 var pickup_distance := Vector3(0.0,-0.6,-1.0)
-var pickup_lerp := 0.2
+var pickup_lerp := 0.4
 
 func set_player(_player: Player):
 	player = _player
@@ -24,6 +24,7 @@ func pickup(object) -> void:
 		current_object.picked_up = false
 		current_object.freeze = false
 		current_object.linear_velocity = current_object.linear_velocity/current_object.mass
+		current_object.angular_velocity = current_object.angular_velocity/current_object.mass
 	else:
 		if object is Interactable && object.is_pickable == true:
 			current_object = object
@@ -33,8 +34,8 @@ func pickup(object) -> void:
 			current_object.set_collision_layer_value(5, false)
 
 func drop() -> void:
-	var camera_transform = player.camera.global_transform
-	current_object.global_transform = camera_transform.translated_local(pickup_distance)
+	var _camera_transform = player.camera.global_transform
+	current_object.global_transform = _camera_transform.translated_local(pickup_distance)
 
 
 func send_highlighting_event(object: Node3D) -> void:
@@ -47,3 +48,5 @@ func _physics_process(_delta: float) -> void:
 	if picked_up:
 		var camera_transform = player.camera.global_transform
 		current_object.global_transform = current_object.global_transform.interpolate_with(camera_transform.translated_local(pickup_distance), pickup_lerp)
+		#var lerped_transform = current_object.global_transform.interpolate_with(camera_transform.translated_local(pickup_distance), pickup_lerp)
+		#current_object.global_transform = current_object.global_transform.interpolate_with(lerped_transform, pickup_lerp)
