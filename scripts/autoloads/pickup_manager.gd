@@ -17,7 +17,8 @@ var pickup_lerp := 0.4
 func set_player(_player: Player):
 	player = _player
 
-func pickup(object) -> void:
+## returns true if object is picked up, false if object is dropped
+func pickup(object) -> bool:
 	if picked_up:
 		current_object.set_collision_layer_value(5, true)
 		picked_up = false
@@ -25,6 +26,7 @@ func pickup(object) -> void:
 		current_object.freeze = false
 		current_object.linear_velocity = current_object.linear_velocity/current_object.mass
 		current_object.angular_velocity = current_object.angular_velocity/current_object.mass
+		return false
 	else:
 		if object is Interactable && object.is_pickable == true:
 			current_object = object
@@ -32,6 +34,8 @@ func pickup(object) -> void:
 			picked_up = true
 			current_object.picked_up = true
 			current_object.set_collision_layer_value(5, false)
+			return true
+		return false
 
 func drop() -> void:
 	var _camera_transform = player.camera.global_transform

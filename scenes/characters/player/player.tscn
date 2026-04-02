@@ -31,6 +31,16 @@ script = ExtResource("9_bsn6e")
 expression = "player_paused == false"
 metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
+[sub_resource type="Resource" id="Resource_hv5x3"]
+script = ExtResource("9_bsn6e")
+expression = "is_looking == true"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[sub_resource type="Resource" id="Resource_ykrpk"]
+script = ExtResource("9_bsn6e")
+expression = "is_looking == false"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
 [node name="Player" type="CharacterBody3D" unique_id=323220209 node_paths=PackedStringArray("pickup_marker")]
 collision_layer = 2
 collision_mask = 21
@@ -48,6 +58,7 @@ mesh = SubResource("CapsuleMesh_e6l77")
 [node name="GroundCheck" type="ShapeCast3D" parent="." unique_id=879375847]
 shape = SubResource("SphereShape3D_bsn6e")
 target_position = Vector3(0, -0.75, 0)
+collision_mask = 17
 
 [node name="Head" type="Node3D" parent="." unique_id=1722484052]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -172,34 +183,62 @@ event = &"pause"
 guard = SubResource("Resource_bsn6e")
 delay_in_seconds = "0.0"
 
-[node name="Interaction" type="Node" parent="StateChart/Root" unique_id=1983971050]
+[node name="PickUpInteraction" type="Node" parent="StateChart/Root" unique_id=1983971050]
 script = ExtResource("3_hss88")
-initial_state = NodePath("Hands_free")
+initial_state = NodePath("HandsFree")
 
-[node name="Hands_free" type="Node" parent="StateChart/Root/Interaction" unique_id=334571493]
+[node name="HandsFree" type="Node" parent="StateChart/Root/PickUpInteraction" unique_id=334571493]
 script = ExtResource("4_qd3e3")
 
-[node name="to_hands_full" type="Node" parent="StateChart/Root/Interaction/Hands_free" unique_id=424141658]
+[node name="to_hands_full" type="Node" parent="StateChart/Root/PickUpInteraction/HandsFree" unique_id=424141658]
 script = ExtResource("5_qd3e3")
-to = NodePath("../../Hands_full")
+to = NodePath("../../HandsFull")
 event = &"pick_up"
 delay_in_seconds = "0.0"
 
-[node name="Hands_full" type="Node" parent="StateChart/Root/Interaction" unique_id=1096024709]
+[node name="HandsFull" type="Node" parent="StateChart/Root/PickUpInteraction" unique_id=1096024709]
 script = ExtResource("4_qd3e3")
 
-[node name="to_hands_free" type="Node" parent="StateChart/Root/Interaction/Hands_full" unique_id=2009419705]
+[node name="to_hands_free" type="Node" parent="StateChart/Root/PickUpInteraction/HandsFull" unique_id=2009419705]
 script = ExtResource("5_qd3e3")
-to = NodePath("../../Hands_free")
+to = NodePath("../../HandsFree")
 event = &"drop"
+delay_in_seconds = "0.0"
+
+[node name="NormalInteraction" type="Node" parent="StateChart/Root" unique_id=965934356]
+script = ExtResource("3_hss88")
+initial_state = NodePath("LookingAtItem")
+
+[node name="LookingAtNothing" type="Node" parent="StateChart/Root/NormalInteraction" unique_id=1939557998]
+script = ExtResource("4_qd3e3")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="to_looking_at_item" type="Node" parent="StateChart/Root/NormalInteraction/LookingAtNothing" unique_id=1022297282]
+script = ExtResource("5_qd3e3")
+to = NodePath("../../LookingAtItem")
+event = &"start_looking"
+guard = SubResource("Resource_hv5x3")
+delay_in_seconds = "0.0"
+
+[node name="LookingAtItem" type="Node" parent="StateChart/Root/NormalInteraction" unique_id=1805376267]
+script = ExtResource("4_qd3e3")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="to_looking_at_nothing" type="Node" parent="StateChart/Root/NormalInteraction/LookingAtItem" unique_id=1693930144]
+script = ExtResource("5_qd3e3")
+to = NodePath("../../LookingAtNothing")
+event = &"stop_looking"
+guard = SubResource("Resource_ykrpk")
 delay_in_seconds = "0.0"
 
 [node name="Components" type="Node3D" parent="." unique_id=1558628776]
 
 [node name="InteractionComponent" type="Node3D" parent="Components" unique_id=861441716]
+unique_name_in_owner = true
 script = ExtResource("9_42irl")
 
 [node name="PickUpComponent" type="Node3D" parent="Components" unique_id=768330975]
+unique_name_in_owner = true
 script = ExtResource("11_blysn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1149387319]
@@ -223,3 +262,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03445369, -0.9829799)
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Moving/Fall" to="." method="_on_fall_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Movement/Paused" to="." method="_on_paused_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Movement/Paused" to="." method="_on_paused_state_exited"]
+[connection signal="state_exited" from="StateChart/Root/PickUpInteraction/HandsFree" to="Components/PickUpComponent" method="_on_hands_free_state_exited"]
+[connection signal="state_processing" from="StateChart/Root/PickUpInteraction/HandsFree" to="Components/InteractionComponent" method="_on_hands_free_state_processing"]
+[connection signal="state_processing" from="StateChart/Root/PickUpInteraction/HandsFree" to="Components/PickUpComponent" method="_on_hands_free_state_processing"]
+[connection signal="state_processing" from="StateChart/Root/PickUpInteraction/HandsFull" to="Components/InteractionComponent" method="_on_hands_full_state_processing"]
+[connection signal="state_processing" from="StateChart/Root/PickUpInteraction/HandsFull" to="Components/PickUpComponent" method="_on_hands_full_state_processing"]

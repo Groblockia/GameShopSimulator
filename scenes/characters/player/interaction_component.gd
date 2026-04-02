@@ -7,12 +7,11 @@ extends Node3D
 var current_col
 var charged_time: float
 
-func _process(delta: float) -> void:
-	is_colliding_with_interactable()
-	manage_ui()
-	highlighting()
-	normal_interact()
-	charged_interact(delta)
+func _process(_delta: float) -> void:
+	var x = is_colliding_with_interactable()
+	stateChart.set_expression_property("is_looking", x)
+	stateChart.send_event("start_looking")
+	stateChart.send_event("stop_looking")
 
 func is_colliding_with_interactable() -> bool:
 	current_col = interactRay.get_collider()
@@ -64,3 +63,15 @@ func show_charged_interaction_ui():
 	%ChargedInteractionContainer.max_value = current_col.charge_time
 	%ChargedInteractionContainer.value = charged_time
 	%ChargedInteractionContainer.position = %Camera.unproject_position(current_col.global_position)
+
+func _on_hands_free_state_processing(delta: float) -> void:
+	manage_ui()
+	highlighting()
+	normal_interact()
+	charged_interact(delta)
+
+func _on_hands_full_state_processing(delta: float) -> void:
+	manage_ui()
+	highlighting()
+	normal_interact()
+	charged_interact(delta)

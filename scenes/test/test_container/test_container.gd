@@ -3,8 +3,7 @@ extends Interactable
 class_name ItemContainer
 
 @onready var itemPositionMarkers: Array[Marker3D]
-const TEST_GAMEBOX = preload("uid://bfmsp6hdnfl06")
-const TEST_ITEM_1 = preload("uid://q00chojrtehd")
+const GAME_BOX_TEST_1 = preload("uid://dtp4i1c430w3m")
 
 @export var inventory: Inventory
 
@@ -18,7 +17,8 @@ func _process(_delta: float) -> void:
 		sync_items()
 		inventory.print_contents()
 	if Input.is_action_just_pressed("ui_up"):
-		inventory.add_item(TEST_ITEM_1)
+		var x = GAME_BOX_TEST_1.instantiate()
+		inventory.add_item(x)
 		sync_items()
 		inventory.print_contents()
 
@@ -33,13 +33,10 @@ func sync_items():
 	for i in itemPositionMarkers.size():
 		if inventory.contents[i] != null:
 			if itemPositionMarkers[i].get_child_count() == 0:
-				var x = TEST_GAMEBOX.instantiate()
+				var x = GAME_BOX_TEST_1.instantiate()
 				itemPositionMarkers[i].add_child(x)
 			else:
 				pass
-				#itemPositionMarkers[i].get_child(0).queue_free()
-				#var x = TEST_GAMEBOX.instantiate()
-				#itemPositionMarkers[i].add_child(x)
 		else:
 			if itemPositionMarkers[i].get_child_count() > 0:
 				itemPositionMarkers[i].get_child(0).queue_free()

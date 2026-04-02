@@ -32,6 +32,12 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://godot_auditor_v1.1.0-Founder/": "red"
+}
+
 [godots]
 
 version_hint=""

@@ -1,6 +1,11 @@
 class_name Inventory extends Resource
 
-@export var contents: Array[Item]
+@export var size: int:
+	set(value):
+		size = value
+		contents.resize(value)
+
+var contents: Array[Item]
 
 ## adds item at specified index, or starting from first empty position if not specified
 func add_item(item: Item, index: int = -1) -> void:
@@ -25,6 +30,6 @@ func remove_item(index: int = -1) -> void:
 func print_contents() -> void:
 	for i in contents.size():
 		if contents[i] != null:
-			print("position: ",i,", name: ", contents[i].name)
+			print("position: ",i,", name: ", contents[i].item_name)
 		else:
 			print("position: ",i,", name: ", contents[i])

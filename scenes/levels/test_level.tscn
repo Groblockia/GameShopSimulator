@@ -116,5 +116,8 @@ charge_time = 0.5
 [node name="test_pickable" parent="." unique_id=902808013 instance=ExtResource("4_v45ci")]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3.665357, 1.0000007, -1.4123785)
 
+[node name="test_pickable2" parent="." unique_id=1184649274 instance=ExtResource("4_v45ci")]
+transform = Transform3D(-0.11349797, 0, -0.99353826, 0, 1, 0, 0.99353826, 0, -0.11349797, 3.7578225, 1.0000007, 0.61423564)
+
 [node name="test_container" parent="." unique_id=1767349216 instance=ExtResource("6_6xh4u")]
 transform = Transform3D(0.71678877, 0, 0.6972901, 0, 1, 0, -0.6972901, 0, 0.71678877, -5.6822805, 1.5282905, -2.3108282)

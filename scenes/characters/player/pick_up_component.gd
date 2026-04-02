@@ -11,9 +11,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	current_col = pickupRay.get_collider()
-	interact()
-	highlighting()
-	manage_ui()
+	#interact()
+	#highlighting()
+	#manage_ui()
 
 func is_colliding_with_pickable() -> bool:
 	if current_col is Interactable && current_col.is_pickable == true:
@@ -23,7 +23,11 @@ func is_colliding_with_pickable() -> bool:
 
 func interact():
 	if Input.is_action_just_pressed("interact"):
-		PickupManager.pickup(current_col)
+		var x = PickupManager.pickup(current_col)
+		if x == true:
+			stateChart.send_event("pick_up")
+		else:
+			stateChart.send_event("drop")
 
 func highlighting() -> void:
 	PickupManager.send_highlighting_event(current_col)
@@ -35,5 +39,22 @@ func manage_ui():
 	else:
 		%PickableInteractionContainer.hide()
 
+func hide_ui():
+	%PickableInteractionContainer.hide()
+
 func show_interaction_ui():
 	%PickableInteractionContainer.position = %Camera.unproject_position(current_col.global_position)
+
+func _on_hands_free_state_processing(_delta: float) -> void:
+	#current_col = pickupRay.get_collider()
+	manage_ui()
+	highlighting()
+	interact()
+
+func _on_hands_full_state_processing(_delta: float) -> void:
+	#current_col = pickupRay.get_collider()
+	interact()
+	#manage_ui()
+
+func _on_hands_free_state_exited() -> void:
+	hide_ui()
