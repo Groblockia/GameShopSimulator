@@ -79,11 +79,6 @@ target_position = Vector3(0, 0, -2)
 collision_mask = 17
 collide_with_areas = true
 
-[node name="StateChartDebugger" parent="." unique_id=809139354 instance=ExtResource("6_6avc5")]
-offset_right = -713.0
-offset_bottom = -264.0
-initial_node_to_watch = NodePath("../StateChart")
-
 [node name="StateChart" type="Node" parent="." unique_id=336755062]
 unique_name_in_owner = true
 script = ExtResource("2_rhvw2")
@@ -241,19 +236,48 @@ script = ExtResource("9_42irl")
 unique_name_in_owner = true
 script = ExtResource("11_blysn")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1149387319]
-
-[node name="InteractionContainer" parent="CanvasLayer" unique_id=421859451 instance=ExtResource("11_djydg")]
-unique_name_in_owner = true
-
-[node name="ChargedInteractionContainer" parent="CanvasLayer" unique_id=867686348 instance=ExtResource("10_3xnwo")]
-unique_name_in_owner = true
-
-[node name="PickableInteractionContainer" parent="CanvasLayer" unique_id=869925652 instance=ExtResource("12_hv5x3")]
-unique_name_in_owner = true
-
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1184132311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03445369, -0.9829799)
+
+[node name="InteractionUI" type="CanvasLayer" parent="." unique_id=1149387319]
+
+[node name="InteractionContainer" parent="InteractionUI" unique_id=421859451 instance=ExtResource("11_djydg")]
+unique_name_in_owner = true
+
+[node name="ChargedInteractionContainer" parent="InteractionUI" unique_id=867686348 instance=ExtResource("10_3xnwo")]
+unique_name_in_owner = true
+
+[node name="PickableInteractionContainer" parent="InteractionUI" unique_id=869925652 instance=ExtResource("12_hv5x3")]
+unique_name_in_owner = true
+
+[node name="DebugUI" type="CanvasLayer" parent="." unique_id=621408805]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DebugUI" unique_id=1196484475]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugUI/HBoxContainer" unique_id=1086168974]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StateChartDebugger" parent="DebugUI/HBoxContainer/VBoxContainer" unique_id=809139354 instance=ExtResource("6_6avc5")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+initial_node_to_watch = NodePath("../../../../StateChart")
+
+[node name="Control" type="Control" parent="DebugUI/HBoxContainer/VBoxContainer" unique_id=1482637748]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="DebugUI/HBoxContainer" unique_id=439731577]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+mouse_filter = 2
 
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Moving/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Moving/Walk" to="." method="_on_walking_state_physics_processing"]
@@ -265,5 +289,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03445369, -0.9829799)
 [connection signal="state_exited" from="StateChart/Root/PickUpInteraction/HandsFree" to="Components/PickUpComponent" method="_on_hands_free_state_exited"]
 [connection signal="state_processing" from="StateChart/Root/PickUpInteraction/HandsFree" to="Components/InteractionComponent" method="_on_hands_free_state_processing"]
 [connection signal="state_processing" from="StateChart/Root/PickUpInteraction/HandsFree" to="Components/PickUpComponent" method="_on_hands_free_state_processing"]
+[connection signal="state_exited" from="StateChart/Root/PickUpInteraction/HandsFull" to="Components/PickUpComponent" method="_on_hands_full_state_exited"]
 [connection signal="state_processing" from="StateChart/Root/PickUpInteraction/HandsFull" to="Components/InteractionComponent" method="_on_hands_full_state_processing"]
 [connection signal="state_processing" from="StateChart/Root/PickUpInteraction/HandsFull" to="Components/PickUpComponent" method="_on_hands_full_state_processing"]

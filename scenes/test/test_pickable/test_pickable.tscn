@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cl4y8gi0tkitl" path="res://icon.svg" id="1_8xobo"]
 [ext_resource type="Script" uid="uid://dlwi737ooaofy" path="res://scenes/test/test_pickable/test_pickable.gd" id="1_m2e0k"]
+[ext_resource type="Resource" uid="uid://cygci03ij2amg" path="res://scenes/test/test_pickable/inventory.tres" id="2_8gvwo"]
 [ext_resource type="Shader" uid="uid://pkfq3uanf6gn" path="res://assets/shader/outline.gdshader" id="3_60b4m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8xobo"]
@@ -30,6 +31,7 @@ collision_mask = 17
 mass = 5.0
 freeze_mode = 1
 script = ExtResource("1_m2e0k")
+inventory = ExtResource("2_8gvwo")
 is_pickable = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2004373164]

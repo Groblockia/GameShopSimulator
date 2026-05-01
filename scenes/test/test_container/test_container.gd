@@ -4,6 +4,7 @@ class_name ItemContainer
 
 @onready var itemPositionMarkers: Array[Marker3D]
 const GAME_BOX_TEST_1 = preload("uid://dtp4i1c430w3m")
+const GAME_BOX_TEST_2 = preload("uid://yryxdagohst8")
 
 @export var inventory: Inventory
 
@@ -17,7 +18,7 @@ func _process(_delta: float) -> void:
 		sync_items()
 		inventory.print_contents()
 	if Input.is_action_just_pressed("ui_up"):
-		var x = GAME_BOX_TEST_1.instantiate()
+		var x = GAME_BOX_TEST_2.instantiate()
 		inventory.add_item(x)
 		sync_items()
 		inventory.print_contents()

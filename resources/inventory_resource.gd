@@ -17,15 +17,25 @@ func add_item(item: Item, index: int = -1) -> void:
 	elif index >= 0 && index < contents.size():
 		contents[index] = item
 
-## removes item at specified index, or last position if not specified
-func remove_item(index: int = -1) -> void:
+## fills inventory with the same item
+func fill(item: Item) -> void:
+	for i in contents.size():
+		add_item(item)
+
+## removes item at specified index, or last position if not specified. returns true if an item was removed, false if there is no item to remove
+func remove_item(index: int = -1) -> bool:
 	if index == -1:
 		for i in range(contents.size() -1, -1, -1):
 			if contents[i] != null:
 				contents[i] = null
-				return
-	elif index >= 0 && index < contents.size():
-		contents[index] = null
+				return true
+		return false
+	if index >= 0 && index < contents.size():
+		if contents[index] != null:
+			contents[index] = null
+			return true
+		return false
+	return false
 
 func print_contents() -> void:
 	for i in contents.size():

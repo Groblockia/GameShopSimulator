@@ -6,10 +6,11 @@ extends Node3D
 
 var current_col
 var charged_time: float
+var is_looking: bool
 
 func _process(_delta: float) -> void:
-	var x = is_colliding_with_interactable()
-	stateChart.set_expression_property("is_looking", x)
+	is_looking = is_colliding_with_interactable()
+	stateChart.set_expression_property("is_looking", is_looking)
 	stateChart.send_event("start_looking")
 	stateChart.send_event("stop_looking")
 
