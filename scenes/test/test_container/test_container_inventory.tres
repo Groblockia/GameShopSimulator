@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Inventory" format=3 uid="uid://d18g6w4d1jryf"]
+[gd_resource type="Resource" script_class="Inventory" format=3 uid="uid://wmwh7427ia4u"]
 
+[ext_resource type="Script" uid="uid://dohnxntofupx0" path="res://resources/item_resource.gd" id="1_aruc1"]
 [ext_resource type="Script" uid="uid://dxdqndcqn4t7u" path="res://resources/inventory_resource.gd" id="2_6v48x"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("2_6v48x")
-size = 12
+contents = Array[ExtResource("1_aruc1")]([null, null, null, null, null, null, null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://dxdqndcqn4t7u"

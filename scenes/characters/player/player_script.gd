@@ -24,7 +24,7 @@ var strength_multiplier:float = 1.4
 @onready var ground_check: ShapeCast3D = $GroundCheck
 
 func _ready() -> void:
-	Global.player = self
+	#Global.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(_delta: float) -> void:

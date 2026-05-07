@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cn52v6plvyhxt" path="res://scenes/test/test_pickable/test_pickable.tscn" id="4_v45ci"]
 [ext_resource type="PackedScene" uid="uid://bwij7irlq6ma1" path="res://scenes/test/test_container/test_container.tscn" id="6_6xh4u"]
 [ext_resource type="Script" uid="uid://dxdqndcqn4t7u" path="res://resources/inventory_resource.gd" id="6_cyt5c"]
+[ext_resource type="Script" uid="uid://dohnxntofupx0" path="res://resources/item_resource.gd" id="7_7x1jh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v45ci"]
 albedo_texture = ExtResource("1_48ne7")
@@ -38,16 +39,10 @@ sky = SubResource("Sky_48ne7")
 tonemap_mode = 4
 tonemap_agx_contrast = 1.5
 
-[sub_resource type="Resource" id="Resource_cyt5c"]
+[sub_resource type="Resource" id="Resource_hfwtw"]
 resource_local_to_scene = true
 script = ExtResource("6_cyt5c")
-size = 10
-metadata/_custom_type_script = "uid://dxdqndcqn4t7u"
-
-[sub_resource type="Resource" id="Resource_7x1jh"]
-resource_local_to_scene = true
-script = ExtResource("6_cyt5c")
-size = 10
+contents = Array[ExtResource("7_7x1jh")]([null, null, null, null, null, null, null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://dxdqndcqn4t7u"
 
 [node name="Level" type="Node3D" unique_id=1097914629]
@@ -127,11 +122,13 @@ charge_time = 0.5
 
 [node name="test_pickable" parent="." unique_id=902808013 instance=ExtResource("4_v45ci")]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3.665357, 1.0000007, -1.4123785)
-inventory = SubResource("Resource_cyt5c")
 
 [node name="test_pickable2" parent="." unique_id=1184649274 instance=ExtResource("4_v45ci")]
 transform = Transform3D(-0.11349797, 0, -0.99353826, 0, 1, 0, 0.99353826, 0, -0.11349797, 3.7578225, 1.0000007, 0.61423564)
-inventory = SubResource("Resource_7x1jh")
 
 [node name="test_container" parent="." unique_id=1767349216 instance=ExtResource("6_6xh4u")]
 transform = Transform3D(0.71678877, 0, 0.6972901, 0, 1, 0, -0.6972901, 0, 0.71678877, -5.6822805, 1.5282905, -2.3108282)
+inv = SubResource("Resource_hfwtw")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=4543263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2)

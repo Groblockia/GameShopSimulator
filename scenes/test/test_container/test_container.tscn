@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bwij7irlq6ma1"]
 
 [ext_resource type="Script" uid="uid://bql040poxrier" path="res://scenes/test/test_container/test_container.gd" id="1_qxckt"]
-[ext_resource type="Resource" uid="uid://d18g6w4d1jryf" path="res://scenes/test/test_container/test_container_inventory.tres" id="2_f8owb"]
+[ext_resource type="Resource" uid="uid://wmwh7427ia4u" path="res://scenes/test/test_container/test_container_inventory.tres" id="2_f8owb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qxckt"]
 size = Vector3(0.86898804, 1.1333008, 0.17919922)
@@ -13,7 +13,7 @@ albedo_color = Color(0, 0.6833334, 1, 1)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_qxckt")
-inventory = ExtResource("2_f8owb")
+inv = ExtResource("2_f8owb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1258486878]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
