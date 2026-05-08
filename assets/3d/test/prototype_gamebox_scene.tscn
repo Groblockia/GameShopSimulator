@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://0dsufuuvgmyr"]
-
-[ext_resource type="PackedScene" uid="uid://ctvnspg56d176" path="res://assets/3d/test/prototype_gamebox.glb" id="1_frfjr"]
-
-[node name="prototype_gameboxe" unique_id=128962244 instance=ExtResource("1_frfjr")]
