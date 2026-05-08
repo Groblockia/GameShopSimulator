@@ -1,10 +1,6 @@
 class_name Inventory extends Resource
 
-## TODO
-## transfer between inventories function
-
 @export var contents: Array[Item]
-
 
 ## adds item at specified index, if not, at either first(0) by default or last(1) depending on [param order]
 func add_item(item: Item, index: int = -1, order: int = 0) -> void:
